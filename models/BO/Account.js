@@ -10,9 +10,21 @@ const userSchema = new Schema({
     Avatar: Schema.Types.String,
     LastLogin: { type: Schema.Types.Date, default: Date.now()},
     Role: { type: Schema.Types.String, enum: ["ADMIN", "MOD", "CREATOR", "MEMBER"], require: [true, "Role is required"], default: "MEMBER"},
-    CreatedAt: { type: Schema.Types.Date, default: Date.now()},
     IsActive: { type: Schema.Types.Boolean, default: true},
     IsDeleted: { type: Schema.Types.Boolean, default: false},
+},{
+    timestamps:{
+        createdAt: 'CreatedAt',
+        updatedAt: 'UpdatedAt'
+    },
+    toJSON: {
+        getters: true,
+        virtuals: true
+    },
+    toObject: {
+        getters: true,
+        virtuals: true
+    }
 })
 
 const UserModel = model('User', userSchema)

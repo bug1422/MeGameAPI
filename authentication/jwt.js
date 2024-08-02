@@ -13,7 +13,7 @@ function initJwt(passport) {
         },
         async function (jwt, cb) {
             try {
-                const user = await UserModel.findOne({ _id: jwt.userId })
+                const user = await UserModel.findById(jwt.userId)
                 if (user) {
                     return cb(null, user)
                 }
